@@ -1,0 +1,76 @@
+<ion-view view-title="{{pdVm.currentStorePoint.name}}">
+  <ion-content class="padding">
+    <ion-refresher on-refresh="pdVm.updateScreen()"></ion-refresher>
+    <div class="row store-header">
+      <div class="col-25 point-image">
+        <img ng-if="pdVm.currentStorePoint.image.url" ng-src="{{pdVm.currentStorePoint.image.url}}"></img>
+        <img ng-if="!pdVm.currentStorePoint.image.url" ng-src="img/store_image_default.png"></img>
+      </div>
+      <div class="col">
+        <h4>{{pdVm.currentStorePoint.name}}</h4>
+        <p>{{pdVm.currentStorePoint.address}}</p>
+        <p>{{pdVm.currentStorePoint.city}}</p>
+      </div>
+      <div class="text-right point-image">
+        <h4 class="oblique"><i class="ion-navigate calm"></i> {{pdVm.currentStorePoint.distance}}m</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">{{pdVm.currentStorePoint.description}}</div>
+    </div>
+
+    <div class="row">
+      <div class="col shadow-box" ng-click="pdVm.startCharge()" ng-class="{'icon-active': pdVm.isUserInStore}">
+        <i class="ion-battery-low"></i>
+        <span>cargar</span>
+      </div>
+      <div class="col shadow-box" ng-click="pdVm.showInfoDetails()" ng-class="{'icon-active': pdVm.showInfo}">
+        <i class="ion-ios-information-outline"></i>
+        <span>info</span>
+      </div>
+      <div class="col shadow-box" ng-click="pdVm.showHistoryPane()"  ng-class="{'icon-active': pdVm.showHistory}">
+        <i class="ion-clock"></i>
+        <span>historial</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col calm-bg" ng-cloak ng-show="pdVm.showInfo && !pdVm.isUserInStore">
+        Ud esta a {{pdVm.currentStorePoint.distance}} m de este punto de carga. <span ng-if="pdVm.currentStorePoint.distance > 0"> Dirijase hacia ese punto para cargar. </span>
+      </div>
+      <div class="col calm-bg" ng-cloak ng-show="pdVm.showInfo && pdVm.isUserInStore">
+       Usted puede cargar en este establecimiento ahora! Presionando el boton Cargar.
+      </div>
+    </div>
+    <div id="map_point" data-tap-disabled="true" ng-show="!pdVm.showHistory"></div>
+    <div class="row" ng-show="pdVm.showHistory">
+      <ion-list class="col basic-container-list">
+        <ion-item ng-show="!pdVm.charges.length">
+          <i class="ion-alert"></i> Parece que no ha cargado nunca en este sitio.
+        </ion-item>
+        <ion-item ng-repeat="charge in pdVm.charges" type="item-text-wrap">
+          <div class="row">
+            <!--<div class="col-25">-->
+            <!--<img ng-if="charge.store.image.url" class="history-image" ng-src="{{charge.store.image.url}}">-->
+            <!--<img ng-if="!charge.store.image.url" class="history-image" src="img/store_image_default.png">-->
+            <!--</div>-->
+            <!--<div class="col-60 container-align-center">-->
+            <div class="col container-align-center">
+              <div class="charge-data">
+                <h2>{{charge.store.name}}</h2>
+                <p>{{charge.startDate | date:'MM/dd/yyyy HH:mm:ss'}}</p>
+              </div>
+            </div>
+            <div class="col-15 container-align-center">
+              <div>
+                <span ng-bind="pdVm.getTime(charge.startDate, charge.endDate)"></span>
+                min
+              </div>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+  <div ng-include="'templates/footer.html'"></div>
+</ion-view>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="img-src * 'self' data:; default-src * 'self' gap: wss: ws: ; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; script-src 'self' http://maps.google.com http://maps.googleapis.com 'unsafe-inline' 'unsafe-eval';">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/gillsans.css" rel="stylesheet">
+    <link href="lib/leaflet/dist/leaflet.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+
+    <script src="cordova.js"></script>
+    <!-- bower:js -->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.js"></script>
+    <script src="lib/leaflet/dist/leaflet.js"></script>
+    <script src="lib/ui-leaflet/dist/ui-leaflet.js"></script>
+    <script src="lib/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="lib/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="lib/lodash/dist/lodash.min.js"></script>
+    <script src="lib/elasticsearch/elasticsearch.angular.js"></script>
+    <!-- endbower -->
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/controllers/login-controller.js"></script>
+    <script src="js/controllers/home-controller.js"></script>
+    <script src="js/controllers/points-controller.js"></script>
+    <script src="js/controllers/app-controller.js"></script>
+    <script src="js/controllers/point-detail-controller.js"></script>
+    <script src="js/controllers/history-controller.js"></script>
+    <script src="js/controllers/promociones-controller.js"></script>
+    <script src="js/controllers/promotions-detail-controller.js"></script>
+    <script src="js/controllers/help-controller.js"></script>
+    <script src="js/services/login-service.js"></script>
+    <script src="js/services/geo-service.js"></script>
+    <script src="js/services/charge-service.js"></script>
+    <script src="js/services/notification-service.js"></script>
+    <script src="js/directives/search-directive.js"></script>
+    <script src="js/directives/notification-directive.js"></script>
+    <script src="js/directives/smart-button.js"></script>
+    <script src="js/directives/charge-button.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDXfw3CAAXqKgCKnEOIJ3MtVh0MCvgb_iM"></script>
+  </head>
+  </head>
+  <body ng-app="app" ng-controller="AppController as appVm">
+    <ion-side-menus>
+      <ion-pane ion-side-menu-content>
+        <ion-nav-bar class="bar-light">
+          <ion-nav-buttons side="right" ng-show="appVm.user">
+            <button ng-show="appVm.user" class="button button-icon button-clear ion-navicon" ng-click="appVm.openMenu()"></button>
+          </ion-nav-buttons>
+          <ion-nav-buttons side="left">
+            <img class="header-logo" src="img/ener_black.png"></img>
+          </ion-nav-buttons>
+          <ion-nav-back-button>
+          </ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view>
+          <notification></notification>
+        </ion-nav-view>
+      </ion-pane>
+
+      <ion-side-menu side="right" ng-show="appVm.user">
+        <ion-content has-header="false">
+          <div class="row justify-center">
+            <div class="user-image-container">
+              <img ng-if="appVm.user.image" class="user-image" ng-src="{{appVm.user.image}}"></img>
+              <img ng-if="!appVm.user.image" class="user-image" src="img/user_default.png"></img>
+            </div>
+          </div>
+
+          <div class="row justify-center">
+            <div class="profile-text">
+              {{appVm.user.name}}
+            </div>
+          </div>
+
+          <div class="row justify-center">
+            <a class="view-profile" ng-click="appVm.verProfile()">Ver Perfil</a>
+          </div>
+
+          <ion-list>
+            <ion-item class="item-avatar" href="#/home" menu-close>
+              <img class="menu-image menu-image-home" src="img/pin1.png"></img>
+              <img class="header-logo" src="img/ener_black.png"></img>
+            </ion-item>
+            <ion-item class="item-avatar menu-item" href="#/promotions" menu-close>
+              Promoción de recargas
+              <img class="menu-image" src="img/promo.png"></img>
+            </ion-item>
+            <ion-item class="item-avatar menu-item" href="#/history" menu-close>
+              Historial de recargas
+              <img class="menu-image" src="img/historial.png"></img>
+            </ion-item>
+            <ion-item class="item-avatar menu-item" ng-click="appVm.goToHelp()">
+              <img class="menu-image" src="img/help.png"></img>
+              <div>Ayuda</div>
+            </ion-item>
+            <ion-item class="item-avatar menu-item" ng-click="appVm.openAboutModal()">
+              <img class="menu-image menu-image-info" src="img/info.png"></img>
+              <div>Acerca de</div>
+            </ion-item>
+            <ion-item class="item-avatar menu-item" ng-click="appVm.logout()" menu-close>
+              <img class="menu-image" src="img/logout.png"></img>
+              <div>Cerrar sesión</div>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus>
+  </body>
+</html>

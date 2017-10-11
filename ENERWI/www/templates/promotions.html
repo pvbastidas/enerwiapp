@@ -1,0 +1,45 @@
+<ion-view view-title="Promociones" hide-back-button="true">
+  <ion-content class="basic-container-list">
+      <div class="card" ng-if="!promoVm.promociones.length" ng-cloak>
+        <div class="item item-text-wrap energized-bg">
+          No existen promociones!
+        </div>
+      </div>
+      <div ng-repeat="promotion in promoVm.promociones" ng-if="$index%2==0" class="row">
+        <div class="col col-50 promotion" ng-if="$index < promoVm.promociones.length" ng-click="promoVm.goToPromotion(promotion)">
+          <div class="row">
+            <div class="col-25">
+              <img ng-if="promoVm.promociones[$index].store.image.url" class="promotion-image" ng-src="{{promoVm.promociones[$index].store.image.url}}">
+              <img ng-if="!promoVm.promociones[$index].store.image.url" class="promotion-image" src="img/store_image_default.png">
+            </div>
+            <div class="col-75 container-align-center">
+              <h6>{{promoVm.promociones[$index].store.name}}</h6>
+            </div>
+          </div>
+          <h4 class="text-center promotion-name">{{promoVm.promociones[$index].name}}</h4>
+          <h6 class="text-center">{{promoVm.promociones[$index].description}}</h6>
+          <h6 class="text-center promotion-date">Válido hasta {{promoVm.promociones[$index].fecha_exp | date:'MM/dd/yyyy'}}</h6>
+        </div>
+        <div class="col col-50 promotion" ng-if="$index + 1 < promoVm.promociones.length" ng-click="promoVm.goToPromotion(promotion)">
+          <div class="row">
+            <div class="col-25">
+              <img ng-if="promoVm.promociones[$index + 1].store.image.url"  class="promotion-image" ng-src="{{promoVm.promociones[$index + 1].store.image.url}}">
+              <img ng-if="!promoVm.promociones[$index + 1].store.image.url" class="promotion-image"  src="img/store_image_default.png">
+            </div>
+            <div class="col-75">
+              <h6>{{promoVm.promociones[$index + 1].store.name}}</h6>
+            </div>
+          </div>
+          <h4 class="text-center promotion-name">{{promoVm.promociones[$index + 1].name}}</h4>
+          <h6 class="text-center">{{promoVm.promociones[$index + 1].description}}</h6>
+          <h6 class="text-center promotion-date">Válido hasta {{promoVm.promociones[$index + 1].fecha_exp | date:'MM/dd/yyyy'}}</h6>
+        </div>
+      </div>
+    <ion-infinite-scroll
+      ng-if="promoVm.hasMoreData"
+      on-infinite="promoVm.nextPage()"
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+  <div ng-include="'templates/footer.html'"></div>
+</ion-view>

@@ -1,0 +1,26 @@
+<ion-view view-title="Login" hide-nav-bar="false" hide-back-button="false">
+	<ion-content>
+<!-- 		<div class="row">
+			<div class="col-60 col-offset-20">
+			  <div class="center-image">
+			    <img class="justify-center" src="img/ener_black.png">
+			  </div>
+			</div>
+		</div> -->
+		<form name="loginForm" novalidate>
+			<div class="list list-inset">
+			  <label class="item item-input">
+			    <i class="icon ion-email placeholder-icon"></i>
+			    <input type="email" ng-model="lc.email" placeholder="Email" required>
+			  </label>
+			  <label class="item item-input">
+			    <i class="icon ion-locked placeholder-icon"></i>
+			    <input type="password" ng-model="lc.password" placeholder="Contraseña" required>
+			  </label>
+			</div>
+			<div class="padding">
+		    	<button class="button button-block button-outline button-balanced" ng-click="lc.legacylogin()" ng-disabled="loginForm.$invalid">Ingresar</button>
+		  	</div>
+	  	</form>
+  	</ion-content>
+</ion-view>

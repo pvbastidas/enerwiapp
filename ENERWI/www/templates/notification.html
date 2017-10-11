@@ -1,0 +1,5 @@
+<div class="bar bar-subheader item-icon-right notification"  ng-show="!!nc.new_notification"
+     ng-class="{'bar-assertive': nc.type, 'bar-balanced' : !nc.type }">
+      <h6 class="notification-message">{{nc.new_notification}}</h6>
+      <img class="close-help" src="img/icon-close.png" ng-click="nc.closeMessage()"></img>
+</div>

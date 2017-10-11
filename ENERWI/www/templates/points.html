@@ -1,0 +1,20 @@
+<ion-view view-title="Locaciones" hide-back-button="true">
+  <ion-content class="basic-container-list">
+      <div class="spinner-container"  ng-show="!pVm.points.length">
+        <ion-spinner icon="bubbles"></ion-spinner>
+      </div>
+    <div  class="basic-container-list">
+      <ion-list ng-show="pVm.points.length">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="point in pVm.points" type="item-text-wrap" href="#/points/{{point.id}}">
+          <img class="logo-list" ng-if="point.image.url" ng-src="{{point.image.url}}">
+          <img class="logo-list" ng-if="!point.image.url" src="img/store_image_default.png">
+          <h2>{{point.name}}</h2>
+          <p>{{point.address}}</p>
+          <p>{{point.distance}} metros</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+  <div ng-include="'templates/footer.html'"></div>
+</ion-view>

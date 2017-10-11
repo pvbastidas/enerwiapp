@@ -1,0 +1,41 @@
+<ion-view view-title="Historial de recargas" hide-back-button="true">
+  <ion-content class="basic-container-list">
+    <div class="card" ng-if="!historyVm.charges.length" ng-cloak>
+      <div class="item item-text-wrap energized-bg">
+        No existe historial de cargas!
+      </div>
+    </div>
+    <ion-list class="basic-container-list">
+      <ion-item ng-repeat="charge in historyVm.charges" type="item-text-wrap">
+        <div class="row">
+          <div class="col-25">
+            <img ng-if="charge.store.image.url" class="history-image" ng-src="{{charge.store.image.url}}">
+            <img ng-if="!charge.store.image.url" class="history-image" src="img/store_image_default.png">
+          </div>
+          <div class="col-60 container-align-center">
+            <div class="charge-data">
+              <h2>{{charge.store.name}}</h2>
+              <p>{{charge.startDate | date:'MM/dd/yyyy HH:mm:ss'}}</p>
+            </div>
+          </div>
+          <div class="col-15 container-align-center">
+            <div>
+              <span ng-bind="historyVm.getTime(charge.startDate, charge.endDate)"></span>
+              min
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll
+      ng-if="historyVm.hasMoreData"
+      on-infinite="historyVm.nextPage()"
+      distance="1%">
+    </ion-infinite-scroll>
+
+  </ion-content>
+
+  <div ng-include="'templates/footer.html'"></div>
+
+</ion-view>

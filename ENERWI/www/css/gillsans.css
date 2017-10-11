@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'ufonts_com_gillsans';
+    src: url('../fonts/ufonts_com_gillsans.eot');
+    src: url('../fonts/ufonts_com_gillsans.eot') format('embedded-opentype'),
+         url('../fonts/ufonts_com_gillsans.woff2') format('woff2'),
+         url('../fonts/ufonts_com_gillsans.woff') format('woff'),
+         url('../fonts/ufonts_com_gillsans.ttf') format('truetype'),
+         url('../fonts/ufonts_com_gillsans.svg#ufonts_com_gillsans') format('svg');
+}
+
+@font-face {
+    font-family: 'ufonts_com_gillsanslight';
+    src: url('../fonts/ufonts_com_gillsanslight.eot');
+    src: url('../fonts/ufonts_com_gillsanslight.eot') format('embedded-opentype'),
+         url('../fonts/ufonts_com_gillsanslight.woff2') format('woff2'),
+         url('../fonts/ufonts_com_gillsanslight.woff') format('woff'),
+         url('../fonts/ufonts_com_gillsanslight.ttf') format('truetype'),
+         url('../fonts/ufonts_com_gillsanslight.svg#ufonts_com_gillsanslight') format('svg');
+}
+

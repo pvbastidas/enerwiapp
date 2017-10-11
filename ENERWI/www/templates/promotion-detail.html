@@ -1,0 +1,27 @@
+<ion-view view-title="">
+  <ion-content>
+    <div class="promotion-header">
+      <div class="col-40 col-offset-33">
+        <img class="promo-image" ng-if="promodtVm.promotion.store.image.url" ng-src="{{promodtVm.promotion.store.image.url}}"></img>
+        <img class="promo-image" ng-if="!promodtVm.promotion.store.image.url" ng-src="img/store_image_default.png"></img>
+      </div>
+    </div>
+    <div class="col container-align-center">
+      <h4>{{promodtVm.promotion.store.name}}</h4>
+    </div>
+    <h3 class="text-bold text-center">{{promodtVm.promotion.name}}</h3>
+    <div class="row">
+      <div class="">{{promodtVm.promotion.description}}</div>
+    </div>
+    <div class="row promotion-date-row">
+      <div class="col-40 text-center promotion-date-message">
+        <div class="text-bold"> Válido hasta: </div>
+        <div> {{promodtVm.promotion.fecha_exp | date:'MM/dd/yyyy'}} </div>
+      </div>
+    </div>
+    <div class="text-center padding text-bold">VEN Y DISFRUTA DE ESTA PROMOCIÓN EN:</div>
+    <div class="padding-left">{{promodtVm.promotion.store.address}}</div>
+    <div id="map_store" data-tap-disabled="true"></div>
+  </ion-content>
+  <div ng-include="'templates/footer.html'"></div>
+</ion-view>

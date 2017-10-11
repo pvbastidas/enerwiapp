@@ -1,0 +1,45 @@
+<ion-view class="help" hide-back-button="true">
+    <ion-content class="has-footer" scroll="false">
+        <ion-slide-box active-slide="helpVm.slides.currentSlide" on-slide-changed="helpVm.slideChanged(index)">
+            <ion-slide class="center">
+              <div class="row slide">
+                <a ng-if="!appVm.isFromOptions" class="close-basic-container" ng-click="helpVm.skipHelp()">Omitir</a>
+                <div class="col center-image calm-bg">
+                  <div class="col-50 col-offset-25">
+                    <img src="img/slide-1.png" style="padding-top: 30px;width:100%">
+                  </div>
+                  <h4>Encuentra un punto de carga</h4>
+                  <p>En nuestro mapa interactivo es muy simple ubicar puntos de recarga cerca.<p>
+                </div>
+              </div>
+            </ion-slide>
+            <ion-slide class="center">
+              <div class="row slide">
+                <a ng-if="!appVm.isFromOptions" class="close-basic-container" ng-click="helpVm.skipHelp()">Omitir</a>
+                <div class="col center-image calm-bg">
+                  <div class="col-50 col-offset-25">
+                    <img src="img/slide-2.png" style="padding-top: 30px;width:100%">
+                  </div>
+                  <h4>Dirígete hacia el punto</h4>
+                  <p>Cuando llegues al punto de carga nuestra app te dirá cuando estes listo para iniciar tu carga</p>
+                </div>
+              </div>
+            </ion-slide>
+            <ion-slide class="center center-image calm-bg">
+              <div class="row slide">
+                <div class="col">
+                  <a ng-if="!appVm.isFromOptions" class="close-basic-container" ng-click="helpVm.skipHelp()">Omitir</a>
+                  <div class="col-50 col-offset-25">
+                    <img src="img/slide-3.png" style="padding-top: 30px;width:100%">
+                  </div>
+                  <h4>Registra tu carga</h4>
+                  <p>Registra tu carga en la tienda y accede a promociones y premios especiales</p>
+                </div>
+              </div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+    <ion-footer-bar align-title="center" class="bar-balanced darker-balanced" ng-click="helpVm.start()"
+    ng-if="helpVm.slides.currentSlide == 2"> <span class="title">Comience aquí</span>
+    </ion-footer-bar>
+</ion-view>

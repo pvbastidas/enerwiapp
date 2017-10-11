@@ -1,0 +1,31 @@
+<ion-modal-view>
+	<ion-content class="about-modal">
+    <div class="basic-header">
+      Acerca de
+    </div>
+		<div class="basic-container">
+      <div class="row">
+        <div class="col-60 col-offset-20">
+          <div class="center-image">
+            <img src="img/logoew.png">
+          </div>
+        </div>
+      </div>
+       <ion-list>
+         <ion-item>
+           <span class="mini-text">Build:</span>
+           <div class="info-text">{{appVm.appBuild}}</div>
+         </ion-item>
+         <ion-item>
+           <span class="mini-text">Version:</span>
+           <div class="info-text">{{appVm.appVersion}}</div>
+         </ion-item>
+         <ion-item>
+           <span class="mini-text">Soporte:</span>
+           <div class="info-text">{{appVm.support}}</div>
+         </ion-item>
+       </ion-list>
+		</div>
+		<img class="close-basic-container" src="img/icon-close.png" ng-click="appVm.closeAboutModal()"></img>
+	</ion-content>
+</ion-modal-view>

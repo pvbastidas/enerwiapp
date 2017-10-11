@@ -1,0 +1,15 @@
+<ion-modal-view>
+	<ion-content class="help-modal">
+    <div class="basic-header">
+      DEBUG
+    </div>
+		<div class="help-container">
+      <div class="col-offset-10 col-80 text-center">
+        <pre>
+        {{appVm.debugInfo}}
+        </pre>
+      </div>
+		</div>
+		<img class="close-help" src="img/icon-close.png" ng-click="appVm.closeDebugModal()"></img>
+	</ion-content>
+</ion-modal-view>

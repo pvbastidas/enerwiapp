@@ -1,0 +1,56 @@
+<ion-view view-title="{{hcVm.title}}" hide-back-button="true">
+    <ion-content>
+        <ion-refresher on-refresh="hcVm.updateScreen()"></ion-refresher>
+        <div class="spinner-container"  ng-show="!map && hcVm.gpsEnabled && !hcVm.isUserCharging && hcVm.weHavePoints">
+        	<ion-spinner icon="bubbles"></ion-spinner>
+      	</div>
+        <div class="card" ng-show="!hcVm.gpsEnabled && !hcVm.isUserCharging" ng-cloak>
+            <div class="item item-text-wrap energized-bg">
+                Es necesario que active el GPS de su dispositivo, para poderle presentar los puntos de carga cerca a usted.
+            </div>
+        </div>
+
+        <div class="text-center stable-bg charge-banner" ng-if="hcVm.isUserCharging">
+            <div class="padding">
+                <span>Cargando en {{hcVm.currentStorePoint.name}}</span>
+            </div>
+        </div>
+
+        <div id="outofpoints" ng-if="!hcVm.weHavePoints">
+          <img src="img/pin.png">
+          <h2>No hay puntos alrededor por ahora!</h2>
+          <p>Pero manténgase al tanto que estamos creciendo continuamente<p>
+          <div class="padding-top text-center">
+              <button class="button button-outline button-balanced" ng-click="hcVm.goToMap()">Ir al mapa</button>
+          </div>
+        </div>
+
+        <div id="map" data-tap-disabled="true" ng-show="!hcVm.isUserCharging && hcVm.weHavePoints"></div>
+
+        <div class="search" ng-show="map && !hcVm.isUserCharging && hcVm.weHavePoints">
+            <search-directive placeholder=""></search-directive>
+        </div>
+        <div class="my-position" ng-if="!hcVm.isUserCharging">
+          <img class="my-position-image" src="img/location-icon.png" ng-click="hcVm.centerToCurrentLocation()" >
+        </div>
+
+        <div ng-if="hcVm.isUserCharging" class="padding-top-large">
+            <div class="row">
+                <div class="col-50 col-offset-25">
+                    <charge-button stop-charge="hcVm.stopCharge(time)" start-charge="hcVm.startCharge()">
+                </div>
+            </div>
+            <div ng-show="hcVm.isChargeFinished" class="padding">
+                <div class="padding-left">
+                    <i class="ion-ios-clock-outline"></i>
+                    <span>Tiempo total de carga: <b>{{hcVm.chargingTime|formatTimer}}</b></span>
+                </div>
+                <div class="padding-top text-center">
+                    <button class="button button-outline button-balanced" ng-click="hcVm.goToMap()">Ir al mapa</button>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div ng-include="'templates/footer.html'"></div>
+</ion-view>
+

@@ -1,0 +1,45 @@
+<ion-modal-view>
+	<ion-content>
+		<div class="row profile-header">
+			<div class="col-60 col-offset-20 profile-header-logo-container">
+				<img class="profile-header-logo" src="img/ener_white.png"></img>
+			</div>
+		</div>
+		<div class="profile-image">
+			<div class="profile-image-border">
+				<img ng-if="appVm.user.image" class="user-image" ng-src="{{appVm.user.image}}"></img>
+				<img ng-if="!appVm.user.image" class="user-image" src="img/user_default.png"></img>
+			</div>
+		</div>
+		<div class="profile-name">
+			{{appVm.user.name}}
+		</div>
+		<div class="row profile-email">
+			<div class="col-20 profile-email-icon">
+				<img src="img/mail.png"></img>
+			</div>
+			<div class="col-80">
+				{{appVm.user.email}}
+			</div>
+		</div>
+
+		<div class="profile-login-with" ng-if="!!appVm.user.loginWith">
+			<div class="row justify-center">
+				<div class="col-100">
+					Inicio de sesión con:
+				</div>
+			</div>
+			<div class="row justify-center">
+				<div class="col-100">
+					<img ng-if="appVm.user.loginWith === 'facebook'" src="img/facebook.png"></img>
+					<img ng-if="appVm.user.loginWith === 'google'" src="img/google.png"></img>
+				</div>
+			</div>
+		</div>
+
+		<img class="close-basic-container" src="img/icon-close.png" ng-click="appVm.closeProfile()"></img>
+		<ion-footer-bar align-title="left" class="bar bar-footer profile-footer">
+		  <a ng-click="appVm.openTermsModal()">Términos y Condiciones</a>
+		</ion-footer-bar>
+	</ion-content>
+</ion-modal-view>

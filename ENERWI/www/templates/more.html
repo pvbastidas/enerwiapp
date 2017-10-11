@@ -1,0 +1,64 @@
+<ion-view view-title="Preferencias" hide-back-button="true">
+  <ion-content>
+    <div class="item item-divider text-center">
+      Configuraciones
+    </div>
+    <div class="item item-icon-left item-toggle">
+      <i class="icon ion-gear-a"></i>
+      Cambiar distancia máxima
+    <label class="toggle toggle-calm">
+       <input type="checkbox" ng-model="appVm.changeDistance">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+    </div>
+    <div class="item range range-assertive" ng-if="appVm.changeDistance">
+      <i class="icon ion-android-walk"></i>
+      <input type="range" name="check_location_num" min="0" max="10" ng-model="appVm.threshold" ng-change="appVm.changeThreshold()">
+      <i class="icon ion-model-s"></i>
+    </div>
+    <div class="item item-divider text-center">
+      Información General
+    </div>
+    <div class="item item-icon-left">
+      <i class="icon ion-battery-low"></i>
+      Porcentaje de bateria
+      <span class="item-note">
+        {{ appVm.batteryLevel }} %
+      </span>
+    </div>
+    <div class="item item-icon-left">
+      <i class="icon ion-arrow-graph-up-left"></i>
+      Distancia máxima para búsquedas
+      <span class="item-note">
+        {{ appVm.threshold }} km
+      </span>
+    </div>
+    <div class="item item-divider text-center">
+      Información App
+    </div>
+    <div class="list">
+      <div class="item item-icon-left">
+        <i class="icon ion-information-circled"></i>
+        Versión
+        <span class="item-note">
+          {{ appVm.appVersion }}
+        </span>
+      </div>
+    </div>
+
+    <div class="item item-divider text-center battery-status-header" ng-if="appVm.debugMode">
+      Sensibilidad GPS: {{appVm.checkLocationNum}}
+    </div>
+    <div class="item range range-assertive" ng-if="appVm.debugMode">
+      <i class="icon ion-ios-navigate-outline"></i>
+      <input type="range" name="check_location_num" min="0" max="10" ng-model="appVm.checkLocationNum" ng-change="appVm.changeCheckLocationNum(this)">
+      <i class="icon ion-ios-navigate"></i>
+    </div>
+    <button class="button button-full button-positive btn-positive" ng-click="appVm.showDebugModal('localStorage')" ng-if="appVm.debugMode">
+      Show localStorage info
+    </button>
+  </ion-content>
+  <div ng-include="'templates/footer.html'"></div>
+</ion-view>

@@ -1,0 +1,25 @@
+<ion-view view-title="" hide-nav-bar="true">
+  <div class="login-container">
+	<div class="row justify-center login-logo">
+		<img src="img/ener.png"></img>
+	</div>
+  	<div class="login-buttons-container">
+	  	<div class="text-center login-text">
+	  		LOGIN WITH
+	  	</div>
+	  	<div class="login-button login-button-fb">
+		    <button class="button button-light button-block" ng-click="lc.login(true)">
+		      <span class="icon ion-social-facebook"></span> FACEBOOK
+		    </button>
+	    </div>
+	    <div class="login-button">
+		    <button class="button button-light button-block" ng-click="lc.login()">
+		      <span class="icon ion-social-google"></span> GOOGLE
+		    </button>
+	    </div>
+	    <div class="login-button login-link">
+        <a ui-sref="legacylogin">Login</a> o <a ui-sref="register">Crear cuenta</a>
+	    </div>
+    </div>
+  </div>
+</ion-view>

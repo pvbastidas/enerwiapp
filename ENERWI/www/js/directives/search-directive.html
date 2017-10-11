@@ -1,0 +1,23 @@
+<div>
+    <div class="search-icon" ng-if="!showSearchInput">
+    	<a ng-click="showInput()"><img src="img/search.png"> </img></a>
+    </div>
+	<div class="search-bar bar-header item-input-inset" ng-show="showSearchInput">
+		<label class="item-input-wrapper">
+		  <i class="icon ion-ios-search placeholder-icon"></i>
+		  <input type="search" placeholder="" ng-model="search.value" ng-change="onChangeQuery()">
+		</label>
+	</div>
+	<div class="search-results" ng-show="search.focus && searchResults.length > 0">
+		<ion-list>
+	      <ion-item class="item-avatar item-icon-right" ng-repeat="point in searchResults" type="item-text-wrap" href="#/points/{{point.id}}">
+	        <img class="logo-list" ng-if="point.image.url" ng-src="{{point.image.url}}">
+	        <img class="logo-list" ng-if="!point.image.url" src="img/store_image_default.png">
+	        <h2>{{point.name}}</h2>
+	        <p>{{point.address}}</p>
+	        <p>{{point.distance}} km</p>
+	        <i class="icon ion-chevron-right icon-accessory"></i>
+	      </ion-item>
+	    </ion-list>
+	</div>
+</div>

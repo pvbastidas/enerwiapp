@@ -1,0 +1,39 @@
+<ion-view view-title="Registrarse" hide-nav-bar="false" hide-back-button="false">
+  <ion-content>
+  <!--   <div class="row">
+      <div class="col-60 col-offset-20">
+        <div class="center-image">
+          <img class="justify-center" src="img/ener_black.png">
+        </div>
+      </div>
+    </div> -->
+    <form name="lc.registerform" novalidate>
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nombre </span>
+          <input type="text" placeholder="Nombre" ng-model="lc.name" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Apellido</span>
+          <input type="text" placeholder="apellido" ng-model="lc.lastname" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="usuario@email.com" ng-model="lc.email" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Contraseña</span>
+          <input type="password" placeholder="contraseña" ng-model="lc.password" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Confirmar Contraseña</span>
+          <input type="password" placeholder="confirmar contraseña" ng-model="lc.password2" required>
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-outline button-balanced" ng-click="lc.register()" ng-disabled="lc.checkForm()">Crear cuenta</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>
+
